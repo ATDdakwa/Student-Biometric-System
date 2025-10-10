@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ef2b7d37.css",
+    "main.js": "/static/js/main.d6145b41.js",
+    "static/js/453.f0181a7a.chunk.js": "/static/js/453.f0181a7a.chunk.js",
+    "static/media/bgpic.jpg": "/static/media/bgpic.1c9ec9645ce803c21d49.jpg",
+    "static/media/fml-health.jpg": "/static/media/fml-health.4d6c2eea10e33b825d64.jpg",
+    "static/media/right_hand_3.png": "/static/media/right_hand_3.66d8ceb703dffdd0ec43.png",
+    "static/media/right_hand_2.png": "/static/media/right_hand_2.2f69012ccd1fb39e0820.png",
+    "static/media/right_hand_1.png": "/static/media/right_hand_1.3c9d455c250e70413a7f.png",
+    "static/media/right_hand_4.png": "/static/media/right_hand_4.d79e671eee3589de0a9d.png",
+    "static/media/right_hand_5.png": "/static/media/right_hand_5.258c6bed86bd75ebd6b6.png",
+    "static/media/first_mutual_logo.png": "/static/media/first_mutual_logo.13af4ef7ccb99a13a9a5.png",
+    "index.html": "/index.html",
+    "main.ef2b7d37.css.map": "/static/css/main.ef2b7d37.css.map",
+    "main.d6145b41.js.map": "/static/js/main.d6145b41.js.map",
+    "453.f0181a7a.chunk.js.map": "/static/js/453.f0181a7a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ef2b7d37.css",
+    "static/js/main.d6145b41.js"
+  ]
+}

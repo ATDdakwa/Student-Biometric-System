@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: biometric-web-core
+  profiles:
+    active: dev
+
+app-name: "biometric-web-core"
+
+product:
+  name: BIOMETRIC-WEB-CORE
+
+server:
+  port: 6003

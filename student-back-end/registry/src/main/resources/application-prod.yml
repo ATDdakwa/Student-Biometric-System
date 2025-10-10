@@ -1,0 +1,13 @@
+eureka:
+    client:
+        fetch-registry: false
+        register-with-eureka: false
+    instance:
+        prefer-ip-address: true
+    server:
+        wait-time-in-ms-when-sync-empty: 0
+server:
+    port: ${PORT:6761}
+spring:
+    application:
+        name: web-registry-service

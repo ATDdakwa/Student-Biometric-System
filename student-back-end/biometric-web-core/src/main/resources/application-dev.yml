@@ -1,0 +1,85 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6000/eureka/
+      #defaultZone: http://web-registry-service:6761/eureka/
+    healthcheck:
+      enabled: 'true'
+    enabled: 'true'
+    fetch-registry: 'true'
+    register-with-eureka: 'true'
+    lease:
+      duration: '5'
+  instance:
+    prefer-ip-address: 'true'
+    lease-renewal-interval-in-seconds: '1'
+    lease-expiration-duration-in-seconds: '2'
+spring:
+  servlet:
+    multipart:
+      enabled: true
+      max-request-size: 128MB
+      max-file-size: 128MB
+  jpa:
+    properties:
+      hibernate:
+        dialect:
+          storage_engine: innoDb
+          nodeValue: org.hibernate.dialect.MySQL5InnoDBDialect
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        hbm2ddl:
+          auto: update
+      max_allowed_packet: '2000'
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    show-sql: 'true'
+  datasource:
+    password : Foxcode*7
+#    password : Tr1Ang13
+    url : jdbc:mysql://localhost:3306/student-biometric?createDatabaseIfNotExist=true&useSSL=false&autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&failOverReadOnly=false&allowMultiQueries=true&serverTimezone=Africa/Harare
+
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username : root
+  main:
+    allow-bean-definition-overriding: 'true'
+
+  feign:
+    user:
+      client: http://user-service:6101/
+jwt:
+  get:
+    token:
+      uri: /authentication
+  http:
+    request:
+      header: Authorization
+  refresh:
+    token:
+      expiration:
+        in:
+          minutes: '1576800'
+      uri: /refresh
+  signing:
+    key:
+      secret: '#$%&t2019#$'
+  token:
+    expiration:
+      in:
+        seconds: '10800'
+
+security:
+  oauth2:
+    client:
+      client-secret: RobTheRich
+      client-id: health-web
+app:
+  jwtExpirationInMs: '1.8e+7'
+  jwtSecret: JWTSuperSecretKey
+com:
+  sun:
+    security:
+      enableAIAcaIssuers: 'true'
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

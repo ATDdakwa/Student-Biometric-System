@@ -1,0 +1,93 @@
+info:
+  app:
+    name: User-service
+    version: '1.0'
+    description: API for user-service on the HCP-WEB platform.
+eureka:
+  client:
+    service-url:
+      defaultZone: http://registry-service:8765/eureka/
+    healthcheck:
+      enabled: 'true'
+    fetch-registry: 'true'
+    enabled: 'true'
+    register-with-eureka: 'true'
+    lease:
+      duration: '5'
+  instance:
+    hostname: User-service
+    prefer-ip-address: 'true'
+    lease-renewal-interval-in-seconds: '1'
+    lease-expiration-duration-in-seconds: '2'
+
+spring:
+  main:
+    allow-bean-definition-overriding: 'true'
+  #    web-application-type: reactive
+#  ldap:
+#    base: CN=Configuration,DC=firstmutual,DC=co,DC=zw
+#    embedded:
+#      port: '636'
+#      validation:
+#        enabled: 'false'
+#      base-dn: CN=Configuration,DC=firstmutual,DC=co,DC=zw
+#    urls: ldap://fmhl-ads-01.firstmutual.co.zw:636,ldap://fmhl-ads-02.firstmutual.co.zw:636,ldap://fmhl-ads-03.firstmutual.co.zw:636,ldap://fmhl-ads-04.firstmutual.co.zw:636,ldap://fmhl-ads-05.firstmutual.co.zw:636
+
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+      max_allowed_packet: '2000'
+    show-sql: 'true'
+  datasource:
+    password: ${DB_PASSWORD}
+    url: ${SPRING_DATASOURCE_URL}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${DB_USER}
+  application:
+    name: User-service
+
+  servlet:
+    multipart:
+      max-file-size: 100MB
+logging:
+  level:
+    org:
+      hibernate: ERROR
+      springframework:
+        web: INFO
+    guru:
+      springframework:
+        controllers: DEBUG
+  file:
+    name: logs/user-service.log
+security:
+  oauth2:
+    client:
+      client-secret: RobTheRich
+      client-id: User-service
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+ribbon:
+  eureka:
+    enabled: true

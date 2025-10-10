@@ -1,0 +1,32 @@
+dn: dc=firstmutual,dc=co,dc=zw
+objectclass: top
+objectclass: user
+objectclass: extensibleObject
+dc: firstmutual
+
+dn: ou=_First Mutual Health Company, dc=firstmutual,dc=co,dc=zw
+objectclass: top
+objectclass: organizationalUnit
+ou: _First Mutual Health Company
+
+dn: ou=GSS_ICT,dc=firstmutual,dc=co,dc=zw
+objectclass: top
+objectclass: organizationalUnit
+ou: _First Mutual Health Company
+
+dn: cn=Munyaradzi Chikuruwo,ou=GSS_ICT,ou=_First Mutual Health Company,dc=firstmutual,dc=co,dc=zw
+objectclass: top
+objectclass: user
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+cn: Munyaradzi Chikuruwo
+sn: Chikuruwo
+SamAccountName: MChikuruwo
+userPassword: Dreamz900%99
+
+
+dn: cn=Domain Admins,ou=GSS_ICT,ou=_First Mutual Health Company,dc=firstmutual,dc=co,dc=zw
+objectclass: top
+objectclass: groupOfUniqueNames
+cn: user
+uniqueMember: SamAccountName=MChikuruwo,ou=people,dc=firstmutual,dc=co,dc=zw

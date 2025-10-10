@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: hcp-web
+  profiles:
+    active: dev
+
+app-name: "hcp-web"
+
+product:
+  name: HCP-WEB
+
+server:
+  port: 6102

@@ -1,0 +1,110 @@
+info:
+  app:
+    name: User-service
+    version: '1.0'
+    description: API for user-service on the HCP-WEB platform.
+eureka:
+  client:
+    service-url:
+     defaultZone: http://localhost:6000/eureka/
+  #    defaultZone: http://web-registry-service:6761/eureka/
+    healthcheck:
+      enabled: 'true'
+    fetch-registry: 'true'
+    enabled: 'true'
+    register-with-eureka: 'true'
+    lease:
+      duration: '5'
+  instance:
+    hostname: User-service
+    prefer-ip-address: 'true'
+    lease-renewal-interval-in-seconds: '1'
+    lease-expiration-duration-in-seconds: '2'
+
+spring:
+  main:
+    allow-bean-definition-overriding: 'true'
+#    web-application-type: reactive
+#
+#  ldap:
+#    base: CN=Configuration,DC=firstmutual,DC=co,DC=zw
+#    embedded:
+#      port: '636'
+#      ldif: src/main/resources/users.ldif
+#      base-dn: CN=Configuration,DC=firstmutual,DC=co,DC=zw
+#    urls: ldaps://fmhl-ads-01.firstmutual.co.zw:636
+#    java:
+#      naming:
+#        security:
+#          protocol: SSL
+
+
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+      max_allowed_packet: '2000'
+    show-sql: 'true'
+  datasource:
+    password : Foxcode*7
+    #    password: ${DB_PASSWORD}
+    url : jdbc:mysql://localhost:3306/thzuser?createDatabaseIfNotExist=true&useSSL=false&autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&failOverReadOnly=false&allowMultiQueries=true&serverTimezone=Africa/Harare
+
+
+    #    url: ${SPRING_DATASOURCE_URL}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username : root
+  #    username: ${DB_USER}
+  application:
+    name: User-service
+
+  servlet:
+    multipart:
+      max-file-size: 100MB
+logging:
+  level:
+    org:
+      hibernate: ERROR
+      springframework:
+        web: INFO
+    guru:
+      springframework:
+        controllers: DEBUG
+  file:
+    name: logs/user-service.log
+security:
+  useSystemPropertiesFile: 'false'
+  oauth2:
+    client:
+      client-secret: RobTheRich
+      client-id: User-service
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+ribbon:
+  eureka:
+    enabled: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+Djdk:
+  tls:
+    client:
+      protocols: TLSv1
