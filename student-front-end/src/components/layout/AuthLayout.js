@@ -1,7 +1,7 @@
 import React, { ReactNode, useState, useEffect } from "react";
 import authImage from "../../assets/images//bgpic.jpg";
 import authImage2 from "../../assets/images/fml-health.jpg";
-import fmlLogo from "../../assets/images/first_mutual_logo.png";
+// import fmlLogo from "../../assets/images/first_mutual_logo.png";
 import PropTypes from "prop-types";
 
 const AuthLayout = ({
@@ -66,7 +66,7 @@ const AuthLayout = ({
 
           <div className="flex flex-col flex-grow" style={{ backgroundColor: "white", padding: "20px", borderRadius: "10px",width:'80rem',height:'45rem' }}>
           <div  className="flex justify-center items-center">
-            <img src={fmlLogo} className="mx-auto ml-0" alt="" style={{ width: '200px', height: 'auto' }}/>
+            {/*<img src={fmlLogo} className="mx-auto ml-0" alt="" style={{ width: '200px', height: 'auto' }}/>*/}
           </div>
             <div className="max-w-sm break-words text-black">
               <h1 className="text-2xl xl:text-3xl font-bold">{title}</h1>
