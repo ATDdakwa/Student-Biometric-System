@@ -80,7 +80,7 @@ const MainPatientEnrolment = () => {
     };
 
     const CallSGIFPGetData = (successCall, failCall) => {
-        const uri = "https://localhost:8443/SGIFPCapture";
+        const uri = "https://172.16.151.72:8084/SGIFPCapture";
         const xmlhttp = new XMLHttpRequest();
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
