@@ -1,0 +1,5 @@
+# Ignore node modules and build caches
+node_modules/
+**/.cache/
+dist/
+build/
