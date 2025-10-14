@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css'; // Import the styles
 import BackButton from '../commons/BackButton';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 import getBaseUrl from './BaseUrl';
 import AuditTrailService from '../../services/AuditTrailService';
 import { IoMdEye, IoMdAdd, IoIosFingerPrint } from "react-icons/io";
@@ -124,6 +125,24 @@ const StudentFingerprintVerification = () => {
                 setMatchStatus(response.data.message);
                 setIsCaptured(true);
                 setIsReset(true);
+
+                // Post verification tracking event
+                try {
+                    const trackingUrl = BASE_URL + 'api/v1/tracking/verify';
+                    const verifyRequest = {
+                        studentNumber: student?.studentNumber,
+                        accessPointCode: accessPoint,
+                        direction: 'ENTRY',
+                        biometricTag: 'FINGERPRINT',
+                        verifierUsername: Cookies.get('userName') || 'system'
+                    };
+                    await axios.post(trackingUrl, verifyRequest);
+                } catch (trackErr) {
+                    console.error('Tracking verify failed:', trackErr);
+                    // Do not block user flow; notify softly
+                    toast.warn('Verified, but failed to record tracking event');
+                }
+
                 // document.getElementById('FPImage1').src = "data:image/bmp;base64," + response.data.bufferedImage;
                 // await delay(1000);
                 setLoading(false);

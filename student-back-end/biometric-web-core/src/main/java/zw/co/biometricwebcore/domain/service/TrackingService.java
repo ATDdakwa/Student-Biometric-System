@@ -45,9 +45,8 @@ public class TrackingService {
             throw new IllegalArgumentException("Access point code or verifierUsername is required");
         }
 
-        boolean registered = "REGISTERED".equalsIgnoreCase(student.getStatus());
-        boolean biometricOk = student.getIsBiometric() != null && student.getIsBiometric()
-                && student.getBiometricTag() != null && student.getBiometricTag().equals(biometricTag);
+        boolean registered = "REGISTERED".equalsIgnoreCase(student.getEnrolmentStatus());
+        boolean biometricOk = student.getIsBiometric() != null && student.getIsBiometric();
 
         boolean allowed = registered && biometricOk && Boolean.TRUE.equals(accessPoint.getActive());
 

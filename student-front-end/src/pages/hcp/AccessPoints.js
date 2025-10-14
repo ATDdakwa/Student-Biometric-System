@@ -54,7 +54,7 @@ const AccessPoints = () => {
         try {
             const response = await axios.post(`${BASE_URL}api/v1/access-points`, {
                 name: newPoint.trim(),
-                code: newPoint.trim().toUpperCase().replace(/\s+/g, "_"), // Example code generation
+                code: newPoint.trim(), // Example code generation
                 active: true
             });
             setAccessPoints([...accessPoints, response.data]);
@@ -81,7 +81,7 @@ const AccessPoints = () => {
         try {
             const response = await axios.put(`${BASE_URL}api/v1/access-points/${id}`, {
                 name: editingName.trim(),
-                code: editingName.trim().toUpperCase().replace(/\s+/g, "_"),
+                code: editingName.trim(),
                 active: true
             });
             setAccessPoints(
