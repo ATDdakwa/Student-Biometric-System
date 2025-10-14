@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface AccessPointRepository extends JpaRepository<AccessPoint, Long> {
     Optional<AccessPoint> findByCode(String code);
+    Optional<AccessPoint> findByName(String name);
 }

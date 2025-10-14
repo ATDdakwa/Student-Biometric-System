@@ -2,25 +2,17 @@ package zw.co.biometricwebcore.api;
 
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import zw.co.biometricwebcore.domain.model.Dependant;
 import zw.co.biometricwebcore.domain.model.Patient;
-import zw.co.biometricwebcore.domain.service.PatientService;
-import zw.co.biometricwebcore.domain.service.SMSService;
-import zw.co.biometricwebcore.request.DepandantDTO;
+import zw.co.biometricwebcore.domain.service.impl.PatientService;
+import zw.co.biometricwebcore.domain.service.impl.SMSService;
 import zw.co.biometricwebcore.request.PatientDTO;
 import zw.co.biometricwebcore.request.TextRequest;
 import zw.co.biometricwebcore.response.BaseResult;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
@@ -54,7 +46,7 @@ public class PatientController {
         return patientService.getPatientsMalePaginated(page, size);
     }
 
-    @GetMapping("/api/v1/patients/get-reports")
+    @GetMapping("/get-reports-org")
     public ResponseEntity<?> getAllPatients(
             @RequestParam(required = false) String company,
             @RequestParam(required = false) String division,
@@ -103,10 +95,10 @@ public class PatientController {
         dto.setAge(patient.getAge()); // Include age directly
         dto.setCompany(patient.getCompany() ); // Convert enum to String
         dto.setScheme(patient.getScheme() ); // Convert enum to String
-//        dto.setRelation(patient.getRelation());
-//        dto.setSuffix(Integer.valueOf(patient.getSuffix()));
-//        dto.setPatientType(patient.getPatientType());
-
+        dto.setRelation(patient.getRelation());
+        dto.setSuffix(Integer.valueOf(patient.getSuffix()));
+        dto.setPatientType(patient.getPatientType());
+        dto.setEnrolmentStatus(patient.getEnrolmentStatus());
 
         dto.setIsBiometric(patient.getIsBiometric());
         dto.setBiometricTag(patient.getBiometric_tag()); // Renamed for consistency

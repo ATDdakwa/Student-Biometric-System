@@ -27,6 +27,9 @@ import zw.co.hcpwebcommons.security.JwtAuthenticationEntryPoint;
 public class BiometricWebCoreApplication {
 
     public static void main(String[] args) {
+
+        System.setProperty("java.io.tmpdir", "C:\\Users\\dakwa\\AppData\\Local\\Temp\\Morfin_AuthB");
+
         SpringApplication.run(BiometricWebCoreApplication.class, args);
     }
 

@@ -12,7 +12,7 @@ import { IoMdEye, IoMdAdd, IoIosFingerPrint } from "react-icons/io";
 import getLocalBaseUrl from './LocalBaseUrl';
 
 
-const StudentFingerprintVerification = () => {
+const MainStudentVerification = () => {
     const [loading, setLoading] = useState(false);
     const location = useLocation();
     const [error, setError] = useState('');
@@ -167,14 +167,14 @@ const StudentFingerprintVerification = () => {
         }
     };
     const fetchPrincipalFingerPrintsData = async (memberNum) => {
-        console.log("Fetching fingerprints for student: " + memberNum);
+        console.log("Fetching fingerprints for memberNum: " + memberNum);
 
         try {
             const response = await axios.get(BASE_URL + `api/v1/fingerprints/membership/` + memberNum);
 
             // ✅ Check if response.data is empty or missing
             if (!response.data || Object.keys(response.data).length === 0) {
-                toast.warning("No fingerprint data found for this student.");
+                toast.warning("No fingerprint data found for this member.");
                 setFingerPrintsData(null);  // Clear any previous data
                 return;
             }
@@ -191,11 +191,11 @@ const StudentFingerprintVerification = () => {
             setLoading(false)
         }
     };
-    /*    useEffect(() => {
-            if (patient?.personnelNumber !== undefined) {
-                fetchPrincipalFingerPrintsData(patient?.personnelNumber + '-00');
-            }
-        }, []);*/
+/*    useEffect(() => {
+        if (patient?.personnelNumber !== undefined) {
+            fetchPrincipalFingerPrintsData(patient?.personnelNumber + '-00');
+        }
+    }, []);*/
     useEffect(() => {
         if (student?.studentNumber) {
             fetchPrincipalFingerPrintsData(student.studentNumber);
@@ -226,7 +226,7 @@ const StudentFingerprintVerification = () => {
     return (
         <DashboardLayout>
             <div className="p-4">
-                <h1 className="text-2xl font-bold mb-6">Student biometric Verification</h1>
+                <h1 className="text-2xl font-bold mb-6">Principal Patient biometric Verification</h1>
                 <hr></hr>
                 <div className="bg-gray-200 p-4" style={{ borderRadius: '20px', paddingBottom: '70px', paddingTop: '70px', paddingLeft: '50px', marginTop: '30px' }} >
 
@@ -266,7 +266,7 @@ const StudentFingerprintVerification = () => {
                                         className="hover:bg-green-700 text-white font-bold py-2 px-4 rounded text-sm flex items-center"
                                     >
                                         <IoIosFingerPrint className="mr-1 text-lg" />
-                                        <span>Scan student fingerprint for verification</span>
+                                        <span>Scan patient fingerprint for verification</span>
                                     </button>
                                 </div>
                             )}
@@ -308,4 +308,4 @@ const StudentFingerprintVerification = () => {
     );
 };
 
-export default StudentFingerprintVerification;
+export default MainStudentVerification;

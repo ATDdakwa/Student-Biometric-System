@@ -104,17 +104,17 @@ public class Patient implements Serializable {
     @Column(name = "scheme")
     private String scheme;
 
-//    @Column(name = "relation")
-//    private String relation;
+    @Column(name = "relation")
+    private String relation;
 
     @Column(name = "oldage")
     private String oldage;
 
-//    @Column(name = "suffix")
-//    private Integer suffix;
+    @Column(name = "suffix")
+    private Integer suffix;
 
-//    @Column(name = "patient_type")
-//    private String patientType;
+    @Column(name = "patient_type")
+    private String patientType;
 
 
     @Column(name = "isBiometric")

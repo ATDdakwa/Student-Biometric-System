@@ -7,6 +7,7 @@ import zw.co.biometricwebcore.domain.model.AccessPoint;
 import zw.co.biometricwebcore.domain.repository.AccessPointRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -23,7 +24,11 @@ public class AccessPointService {
     }
 
     @Transactional
-    public AccessPoint create(AccessPoint ap) {
+    public AccessPoint create(AccessPoint ap) throws Exception {
+        Optional<AccessPoint> accessPoint = accessPointRepository.findByName(ap.getName());
+        if (accessPoint.isPresent()) {
+            throw new Exception();
+        }
         return accessPointRepository.save(ap);
     }
 

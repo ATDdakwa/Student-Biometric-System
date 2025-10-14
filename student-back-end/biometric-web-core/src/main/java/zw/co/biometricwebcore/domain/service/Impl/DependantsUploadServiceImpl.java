@@ -1,4 +1,4 @@
-package zw.co.biometricwebcore.domain.service.Impl;
+package zw.co.biometricwebcore.domain.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -46,9 +46,10 @@ public class DependantsUploadServiceImpl implements DependantUploadService {
             dependantsTemp.setFullName(getValue(record, 1));
             dependantsTemp.setDob(getValue(record, 2));
             dependantsTemp.setGender(getValue(record, 3));
-            dependantsTemp.setSuffix(getIntegerValue(record, 4));
-            dependantsTemp.setRelation(getValue(record, 5));
-            dependantsTemp.setIdNumber(getValue(record, 6));
+            dependantsTemp.setRelation(getValue(record, 4));
+            dependantsTemp.setIdNumber(getValue(record, 5));
+            dependantsTemp.setSuffix(getIntegerValue(record, 6));
+
             dependantTempRepository.save(dependantsTemp);
         }
     }
@@ -98,7 +99,7 @@ public class DependantsUploadServiceImpl implements DependantUploadService {
                     // Matched record found
                     matchedCount++;
 
-                    // Check if any important fields have changed (fullName, dob, relation)
+                    // Check if any important fields have changed (fullName, dob, idNumber and relation)
                     boolean isUpdated = false;
 
                     if (!existingDependant.getFullName().equals(temporaryDependant.getFullName())) {
@@ -107,6 +108,10 @@ public class DependantsUploadServiceImpl implements DependantUploadService {
                     }
                     if (!existingDependant.getDob().equals(temporaryDependant.getDob())) {
                         existingDependant.setDob(temporaryDependant.getDob());
+                        isUpdated = true;
+                    }
+                    if (!existingDependant.getIdNumber().equals(temporaryDependant.getIdNumber())) {
+                        existingDependant.setIdNumber(temporaryDependant.getIdNumber());
                         isUpdated = true;
                     }
                     if (!existingDependant.getRelation().equals(temporaryDependant.getRelation())) {

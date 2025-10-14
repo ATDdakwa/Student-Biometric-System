@@ -9,10 +9,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import zw.co.biometricwebcore.domain.model.Patient;
-import zw.co.biometricwebcore.domain.model.PatientsTemp;
+
 import zw.co.biometricwebcore.domain.service.DependantUploadService;
-import zw.co.biometricwebcore.domain.service.PatientService;
+
 import zw.co.biometricwebcore.domain.service.PatientUploadService;
 
 import java.io.*;

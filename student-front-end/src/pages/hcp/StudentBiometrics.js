@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 import {useLocation, useNavigate} from "react-router-dom";
 
-const PatientBiometrics = () => {
+const StudentBiometrics = () => {
     const BASE_URL = getBaseUrl();
     const [studentsData, setStudentsData] = useState({ content: [], totalElements: 0 });
     const [searchTerm, setSearchTerm] = useState("");
@@ -154,29 +154,45 @@ const PatientBiometrics = () => {
                                         className="py-3 px-4 text-sm font-medium"
                                         style={{
                                             color:
-                                                student.biometricStatus === "ENROLLED"
+                                                student.enrolmentStatus === "ENROLLED"
                                                     ? "green"
                                                     : "red",
                                         }}
                                     >
-                                        {student.biometricStatus || "NOT ENROLLED"}
+                                        {student.enrolmentStatus || "NOT ENROLLED"}
                                     </td>
                                     <td className="py-3 px-4 text-sm flex space-x-2">
-                                        <button
-                                            onClick={() => handleView(student)}
-                                            className="bg-customGreen text-white font-bold py-1 px-2 rounded"
-                                            title="View Biometric"
-                                        >
-                                            <IoMdEye className="mr-1 text-lg" />
-                                        </button>
-                                        <button
-                                            onClick={() => handleEnroll(student)}
-                                            className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-1 px-2 rounded"
-                                            title="Enroll Biometric"
-                                        >
-                                            <IoIosFingerPrint className="mr-1 text-lg" />
-                                        </button>
+                                        {/* If student is ENROLLED — only show View */}
+                                        {student.enrolmentStatus === "ENROLLED" ? (
+                                            <button
+                                                onClick={() => handleView(student)}
+                                                className="bg-customGreen text-white font-bold py-1 px-2 rounded"
+                                                title="View Biometric"
+                                            >
+                                                <IoMdEye className="mr-1 text-lg" />
+                                            </button>
+                                        ) : (
+                                            <>
+                                                {/* If not enrolled — show both View and Enroll */}
+                                                <button
+                                                    onClick={() => handleView(student)}
+                                                    className="bg-customGreen text-white font-bold py-1 px-2 rounded"
+                                                    title="View Biometric"
+                                                >
+                                                    <IoMdEye className="mr-1 text-lg" />
+                                                </button>
+
+                                                <button
+                                                    onClick={() => handleEnroll(student)}
+                                                    className="bg-blue-700 hover:bg-blue-800 text-white font-bold py-1 px-2 rounded"
+                                                    title="Enroll Biometric"
+                                                >
+                                                    <IoIosFingerPrint className="mr-1 text-lg" />
+                                                </button>
+                                            </>
+                                        )}
                                     </td>
+
                                 </tr>
                             ))
                         )}
@@ -240,12 +256,12 @@ const PatientBiometrics = () => {
                                 <strong>Status:</strong>{" "}
                                 <span
                                     className={
-                                        selectedStudent.biometricStatus === "ENROLLED"
+                                        selectedStudent.enrolmentStatus === "ENROLLED"
                                             ? "text-green-600"
                                             : "text-red-600"
                                     }
                                 >
-                                    {selectedStudent.biometricStatus || "NOT ENROLLED"}
+                                    {selectedStudent.enrolmentStatus || "NOT ENROLLED"}
                                 </span>
                             </p>
                         </div>
@@ -258,4 +274,4 @@ const PatientBiometrics = () => {
     );
 };
 
-export default PatientBiometrics;
+export default StudentBiometrics;

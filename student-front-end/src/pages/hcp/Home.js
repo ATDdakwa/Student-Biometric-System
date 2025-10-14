@@ -115,9 +115,9 @@ const Home = () => {
                         >
                             <FaUniversity size={60} color="white" />
                             <h2 className="text-white text-xl font-bold mt-2">Campus Access Activity</h2>
-                            <p className="text-white">Total Events: {records.totalAccessEvents}</p>
-                            <p className="text-white">Verified: {records.verifiedAccess}</p>
-                            <p className="text-white">Unverified: {records.unverifiedAccess}</p>
+                            <p className="text-white">Total Events: {records?.totalAccessEvents}</p>
+                            <p className="text-white">Verified: {records?.verifiedAccess}</p>
+                            <p className="text-white">Unverified: {records?.unverifiedAccess}</p>
                         </Link>
                     </div>
 

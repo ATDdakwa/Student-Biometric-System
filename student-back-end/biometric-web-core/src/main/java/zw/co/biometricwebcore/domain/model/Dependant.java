@@ -56,6 +56,9 @@ public class Dependant implements Serializable {
     @Column(name = "id_number")
     private String idNumber;
 
+    @Column(name = "enrolment_status")
+    private String enrolmentStatus;
+
     @Column(name = "age")
     @Transient // This field will not be stored in the database
     private Integer age;

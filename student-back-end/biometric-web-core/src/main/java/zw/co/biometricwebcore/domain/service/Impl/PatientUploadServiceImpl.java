@@ -1,4 +1,4 @@
-package zw.co.biometricwebcore.domain.service.Impl;
+package zw.co.biometricwebcore.domain.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

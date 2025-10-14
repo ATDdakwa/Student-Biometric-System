@@ -16,9 +16,6 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
 
     // Example: Find a patient by their personnel number
     Optional <Patient> findByPersonnelNumber(String personnelNumber);
-
-    List<Patient> findByPersonnelNumberIn(List<String> personnelNumbers);
-
     Optional<Patient> findByIdNumber(String idNumber);
 
     // Example: Find all patients by status
@@ -32,6 +29,7 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
     List<Patient> findAllByCompany(String company);
 
 
+    List<Patient> findByPersonnelNumberIn(List<String> personnelNumbers);
 
     @Query("SELECT DISTINCT p.department FROM Patient p")
     List<String> findDistinctDepartments();

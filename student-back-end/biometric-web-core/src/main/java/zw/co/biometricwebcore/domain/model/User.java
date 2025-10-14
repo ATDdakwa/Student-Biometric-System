@@ -48,9 +48,4 @@ public class User extends AbstractAuditingEntity {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Role> role;
-
-    // Optional: directly store the access point assigned to this user (alternative to AccessPointAssignment)
-    @ManyToOne(fetch = FetchType.EAGER, optional = true)
-    @JoinColumn(name = "assigned_access_point_id")
-    private AccessPoint assignedAccessPoint;
 }

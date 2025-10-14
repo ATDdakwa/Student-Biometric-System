@@ -8,11 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="registry" />
-        <module name="biometric-web-core" />
         <module name="hcp-web-core" />
         <module name="user-service" />
         <module name="hcp-web-commons" />
         <module name="gateway" />
+        <module name="biometric-web-core" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

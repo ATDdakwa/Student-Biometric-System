@@ -170,14 +170,18 @@ const StudentVerification = () => {
                                         {student.enrolmentStatus || "PENDING"}
                                     </td>
                                     <td className="py-3 px-4">
-                                        <button
-                                            onClick={() => handleVerify(student)}
-                                            className="bg-customGreen hover:bg-green-700 text-white font-bold py-1 px-3 rounded flex items-center"
-                                            title="Verify Fingerprint"
-                                        >
-                                            <IoIosCheckmark className="mr-1 text-lg" />
-                                            Verify
-                                        </button>
+                                        {student.enrolmentStatus === "ENROLLED" ? (
+                                            <button
+                                                onClick={() => handleVerify(student)}
+                                                className="bg-customGreen hover:bg-green-700 text-white font-bold py-1 px-3 rounded flex items-center"
+                                                title="Verify Fingerprint"
+                                            >
+                                                <IoIosCheckmark className="mr-1 text-lg" />
+                                                Verify
+                                            </button>
+                                        ) : (
+                                            <span className="text-gray-400 italic">Not Enrolled</span>
+                                        )}
                                     </td>
                                 </tr>
                             ))

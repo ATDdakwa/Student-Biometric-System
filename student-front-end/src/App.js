@@ -10,15 +10,15 @@ import DashboardLayout from "./components/layout/DashboardLayout";
 import Home from "./pages/hcp/Home";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
-import MainPatientEnrolment from "./pages/hcp/MainPatientEnrolment";
-import MainPatientVerification from "./pages/hcp/MainPatientVerification";
+import MainStudentEnrolment from "./pages/hcp/MainStudentEnrolment";
+import MainStudentVerification from "./pages/hcp/MainStudentVerification";
 import DependantPatientEnrolment from "./pages/hcp/DependantPatientEnrolment";
 import DependantPatientVerification from "./pages/hcp/DependantPatientVerification";
 import ViewPatient from "./pages/hcp/ViewPatient";
 import ViewDependantForBiometrics from "./pages/hcp/ViewDependantForBiometrics";
 import Patients from "./pages/hcp/Students";
-import AddPatient from "./pages/hcp/AddPatient";
-import PatientBiometrics from "./pages/hcp/PatientBiometrics";
+import AddPatient from "./pages/hcp/AddStudent";
+import StudentBiometrics from "./pages/hcp/StudentBiometrics";
 import EnrolmentReport from "./pages/hcp/EnrolmentReport";
 import AttendanceReport from "./pages/hcp/AttendanceReport";
 import BioStatsReport from "./pages/hcp/BioStatsReport";
@@ -29,7 +29,7 @@ import AccessControl from "./pages/hcp/AccessControl";
 import AccessPoints from "./pages/hcp/AccessPoints";
 import StudentVerification from "./pages/hcp/StudentVerification";
 import Students from "./pages/hcp/Students";
-import AddStudent from "./pages/hcp/AddPatient";
+import AddStudent from "./pages/hcp/AddStudent";
 import StudentFingerprintVerification from "./pages/hcp/StudentFingerprintVerification";
 import EnrolmentStats from "./pages/hcp/StudentEnrolmentStats";
 import BiometricAccessReport from "./pages/hcp/BiometricAccessReport";
@@ -89,8 +89,8 @@ const App = () => {
         <Route path="/confirmcode/:username" element={<ConfirmCode />} />
         <Route path="/dashboard" element={<Home />} />
 
-        <Route path="/main-patient-enrollment" element={<MainPatientEnrolment />} />
-        <Route path="/main-patient-verification" element={<MainPatientVerification />} />
+        <Route path="/main-patient-enrollment" element={<MainStudentEnrolment />} />
+        <Route path="/main-patient-verification" element={<MainStudentVerification />} />
         <Route path="/student-fingerprint-verification" element={<StudentFingerprintVerification />} />
 
         <Route path="/dependant-patient-enrollment" element={<DependantPatientEnrolment />} />
@@ -102,7 +102,7 @@ const App = () => {
         <Route path="/students" element={<Students />} />
         <Route path="/add-student" element={<AddStudent />} />
         <Route path="/dependants" element={<Dependants />} />
-        <Route path="/patient-biometrics" element={<PatientBiometrics />} />
+        <Route path="/patient-biometrics" element={<StudentBiometrics />} />
         <Route path="/student-verification" element={<StudentVerification />} />
         <Route path="/enrolment-reports" element={<BioStatsReport />} />
         <Route path="/enrolment-stats" element={<EnrolmentStats />} />

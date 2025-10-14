@@ -31,7 +31,7 @@ public class AccessPointController {
     }
 
     @PostMapping
-    public AccessPoint create(@RequestBody AccessPoint ap) {
+    public AccessPoint create(@RequestBody AccessPoint ap) throws Exception {
         return accessPointService.create(ap);
     }
 

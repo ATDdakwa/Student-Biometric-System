@@ -4,16 +4,17 @@ eureka:
       defaultZone: http://localhost:6000/eureka/
       #defaultZone: http://web-registry-service:6761/eureka/
     healthcheck:
-      enabled: 'true'
-    enabled: 'true'
-    fetch-registry: 'true'
-    register-with-eureka: 'true'
+      enabled: true
+    enabled: true
+    fetch-registry: true
+    register-with-eureka: true
     lease:
-      duration: '5'
+      duration: 5
   instance:
-    prefer-ip-address: 'true'
-    lease-renewal-interval-in-seconds: '1'
-    lease-expiration-duration-in-seconds: '2'
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 2
+
 spring:
   servlet:
     multipart:
@@ -29,24 +30,25 @@ spring:
         current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
         hbm2ddl:
           auto: update
-      max_allowed_packet: '2000'
+      max_allowed_packet: 2000
     hibernate:
       ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL5Dialect
-    show-sql: 'true'
+    show-sql: true
   datasource:
-    password : Foxcode*7
-#    password : Tr1Ang13
-    url : jdbc:mysql://localhost:3306/student-biometric?createDatabaseIfNotExist=true&useSSL=false&autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&failOverReadOnly=false&allowMultiQueries=true&serverTimezone=Africa/Harare
-
+    url: jdbc:mysql://localhost:3306/student-biometric?createDatabaseIfNotExist=true&useSSL=false&autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&failOverReadOnly=false&allowMultiQueries=true&serverTimezone=Africa/Harare
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username : root
+    username: root
+    password:
+    # password: Foxcode*7
+    # password: Tr1Ang13
   main:
-    allow-bean-definition-overriding: 'true'
+    allow-bean-definition-overriding: true
 
   feign:
     user:
       client: http://user-service:6101/
+
 jwt:
   get:
     token:
@@ -58,7 +60,7 @@ jwt:
     token:
       expiration:
         in:
-          minutes: '1576800'
+          minutes: 1576800
       uri: /refresh
   signing:
     key:
@@ -66,20 +68,53 @@ jwt:
   token:
     expiration:
       in:
-        seconds: '10800'
+        seconds: 10800
 
 security:
   oauth2:
     client:
       client-secret: RobTheRich
       client-id: health-web
+
 app:
-  jwtExpirationInMs: '1.8e+7'
+  jwtExpirationInMs: 1.8e+7
   jwtSecret: JWTSuperSecretKey
+
 com:
   sun:
     security:
-      enableAIAcaIssuers: 'true'
+      enableAIAcaIssuers: true
+
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
+
+# ---------------------------
+# LOGGING CONFIGURATION
+# ---------------------------
+logging:
+  level:
+    root: INFO                       # default logging level
+    org.springframework.web: ERROR   # log web-related errors only
+    org.hibernate: WARN              # suppress verbose Hibernate output
+    org.springframework.boot: INFO
+    com.vozhe: DEBUG                 # your application package - set to DEBUG for detailed logs
+  file:
+    name: logs/application.log       # log file location
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %5p [%t] %c:%L - %m%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} - %5p [%t] %c:%L - %m%n"
+  logback:
+    rollingpolicy:
+      max-file-size: 10MB
+      max-history: 10
+      file-name-pattern: logs/application-%d{yyyy-MM-dd}.%i.log.gz
+
+server:
+  error:
+    include-message: always           # include error messages in responses
+    include-binding-errors: always
+    include-stacktrace: on_param
+    whitelabel:
+      enabled: false
+    include-exception: true

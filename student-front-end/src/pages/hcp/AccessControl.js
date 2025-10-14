@@ -348,7 +348,7 @@ const AccessControl = () => {
                   <FormSelect
                     id="selectRole"
                     options={[
-                      { value: "BIOMETRIC", label: "PATIENT BIOMETRIC" },
+                      { value: "BIOMETRIC", label: "STUDENT BIOMETRIC" },
                     ]}
                     value={selectedRole}
                     onChange={setSelectedRole}
