@@ -1,0 +1,14 @@
+#spring:
+#  application:
+#    name: registry-service
+#server:
+#  port: 6761
+#
+#eureka:
+#  client:
+#    registerWithEureka: false
+#    fetchRegistry: false
+#  server:
+#    waitTimeInMsWhenSyncEmpty: 0
+#  instance:
+#      prefer-ip-address: 'true'

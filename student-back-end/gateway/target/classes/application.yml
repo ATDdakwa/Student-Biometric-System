@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: web-gateway-service
+  profiles:
+    active: dev
+  output:
+    ansi:
+      enabled: always

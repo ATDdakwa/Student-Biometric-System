@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: hcp-web-user-service
+  profiles:
+    active: dev
+
+app-name: "hcp-web-user-service"
+
+product:
+  name: FMHL
+
+server:
+  port: 6002

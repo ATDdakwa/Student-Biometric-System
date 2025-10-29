@@ -1,0 +1,94 @@
+version: '3'
+services:
+  gateway-service:
+    container_name: web-gateway-service
+    image: web-gateway-service
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    depends_on:
+      - web-registry-service
+    ports:
+      - "6980:6980"
+    restart: always
+    networks:
+      - hcp-web-network
+    sysctls:
+      - net.ipv4.tcp_keepalive_intvl=45
+      - net.ipv4.tcp_keepalive_probes=15
+      - net.ipv4.tcp_keepalive_time=295
+#    volumes:
+#      - gateway-service:/data/gateway-service
+
+
+  web-registry-service:
+    container_name: web-registry-service
+    image: web-registry-service
+    build:
+      context: ./registry
+      dockerfile: Dockerfile
+    ports:
+      - "6761:6761"
+    restart: always
+    networks:
+      - hcp-web-network
+    sysctls:
+      - net.ipv4.tcp_keepalive_intvl=45
+      - net.ipv4.tcp_keepalive_probes=15
+      - net.ipv4.tcp_keepalive_time=295
+#    volumes:
+#      - registry:/data/registry-service
+
+  user-service:
+    image: hcp-user-service
+    build:
+      context: ./user-service
+      dockerfile: Dockerfile
+    depends_on:
+      - web-registry-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/thzuser?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=Tr1Ang13
+    ports:
+      - "6101:6101"
+    restart: always
+    networks:
+      - hcp-web-network
+    sysctls:
+      - net.ipv4.tcp_keepalive_intvl=45
+      - net.ipv4.tcp_keepalive_probes=15
+      - net.ipv4.tcp_keepalive_time=295
+    volumes:
+      - user-service:/data/user-service
+
+
+
+  biometric-web-core:
+    image: biometric-web-core
+    build:
+      context: ./biometric-web-core
+      dockerfile: Dockerfile
+    depends_on:
+      - web-registry-service
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://localhost:3306/thz?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false
+      - SPRING_DATASOURCE_USERNAME= root
+      - SPRING_DATASOURCE_PASSWORD=Tr1Ang13
+    ports:
+      - "6115:6115"
+    restart: always
+    networks:
+      - hcp-web-network
+    sysctls:
+      - net.ipv4.tcp_keepalive_intvl=45
+      - net.ipv4.tcp_keepalive_probes=15
+      - net.ipv4.tcp_keepalive_time=295
+    volumes:
+      - biometric-web-core:/data/biometric-web-core
+networks:
+  hcp-web-network:
+volumes:
+  mysqldb:
+  user-service:
+  biometric-web-core:

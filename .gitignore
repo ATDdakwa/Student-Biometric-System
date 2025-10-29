@@ -1,0 +1,21 @@
+# --- Node / React (Frontend) ---
+student-front-end/node_modules/
+student-front-end/build/
+student-front-end/dist/
+student-front-end/.env
+student-front-end/.env.*
+
+# --- Java / Spring Boot (Backend) ---
+student-back-end/target/
+student-back-end/out/
+student-back-end/*.log
+student-back-end/*.iml
+student-back-end/.env
+student-back-end/application-*.yml
+student-back-end/application-*.properties
+
+# --- IDE & OS files ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

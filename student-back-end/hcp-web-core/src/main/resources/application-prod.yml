@@ -1,0 +1,79 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://registry-service:8765/eureka
+    healthcheck:
+      enabled: 'true'
+    enabled: 'true'
+    fetch-registry: 'true'
+    register-with-eureka: 'true'
+    lease:
+      duration: '5'
+  instance:
+    prefer-ip-address: 'true'
+    lease-renewal-interval-in-seconds: '1'
+    lease-expiration-duration-in-seconds: '2'
+spring:
+
+  jpa:
+    properties:
+      hibernate:
+        dialect:
+          storage_engine: innoDb
+          nodeValue: org.hibernate.dialect.MySQL5InnoDBDialect
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+        hbm2ddl:
+          auto: update
+      max_allowed_packet: '2000'
+#    hibernate:
+#      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    show-sql: 'true'
+  datasource:
+    password: ${DB_PASSWORD}
+    url: ${SPRING_DATASOURCE_URL}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${DB_USER}
+  main:
+    allow-bean-definition-overriding: 'true'
+
+  feign:
+    user:
+      client: http://user-service:8101/
+
+jwt:
+  get:
+    token:
+      uri: /authentication
+  http:
+    request:
+      header: Authorization
+  refresh:
+    token:
+      expiration:
+        in:
+          minutes: '1576800'
+      uri: /refresh
+  signing:
+    key:
+      secret: '#$%&t2019#$'
+  token:
+    expiration:
+      in:
+        seconds: '10800'
+
+security:
+  oauth2:
+    client:
+      client-secret: RobTheRich
+      client-id: hcp-web
+app:
+  jwtExpirationInMs: '1.8e+7'
+  jwtSecret: JWTSuperSecretKey
+com:
+  sun:
+    security:
+      enableAIAcaIssuers: 'true'
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

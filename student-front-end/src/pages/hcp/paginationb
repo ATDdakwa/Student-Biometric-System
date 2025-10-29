@@ -1,0 +1,30 @@
+import React from "react";
+
+const Pagination = ({ currentPage, pageCount, handlePageChange }) => {
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+
+    for (let i = 1; i <= pageCount; i++) {
+      pageNumbers.push(
+        <li
+          key={i}
+          className={`inline-block px-3 py-1 mx-1 border rounded ${
+            i === currentPage ? "bg-gray-400 text-white" : null
+          }`}
+        >
+          <button onClick={() => handlePageChange(i)}>{i}</button>
+        </li>
+      );
+    }
+
+    return pageNumbers;
+  };
+
+  return (
+    <div className="mt-4">
+      <ul className="flex justify-center">{renderPageNumbers()}</ul>
+    </div>
+  );
+};
+
+export default Pagination;
